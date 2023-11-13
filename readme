@@ -1,0 +1,9 @@
+install requests
+
+```
+python3 -m pip install requests
+```
+
+target playlist: https://open.spotify.com/playlist/3CV4m7gpnCjTYPqcPoI2dc?si=44e86e937be8461f
+
+set `CLIENT_ID` and `CLIENT_SECRET` in `config.env`
