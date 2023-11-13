@@ -6,8 +6,5 @@ def main():
 
   playlist_fetcher.build_request_fields()
   playlist_fetcher.get_playlist()
-  # print(val)
-
-  print("hello world!")
 
 main()

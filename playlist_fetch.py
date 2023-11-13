@@ -48,7 +48,7 @@ class PlaylistFetch:
     # format and set url    
     field_param = urllib.parse.quote(self._field)
     print(field_param)
-    self.playlist_url = f"{self.playlist_url}?field={field_param}"
+    self.playlist_url = f"{self.playlist_url}?fields={field_param}"
 
   def get_playlist(self):
     token = self.spotify.new_token()
