@@ -57,7 +57,7 @@ class PlaylistFetch:
     self.build_request_fields()
 
     headers = {
-      'Authorization': 'Bearer ' + access_token,
+      'Authorization': f"Bearer {access_token}",
     }
 
     req = requests.get(

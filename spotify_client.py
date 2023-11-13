@@ -8,6 +8,7 @@ class Spotify:
   client_secret: str
 
   def __init__(self):
+    # read and parse config.env
     with open(self.env_file) as f:
       for line in f:
         if line.startswith('#') or not line.strip():
@@ -20,14 +21,13 @@ class Spotify:
             self.client_secret = value
     print(f"id: {self.client_id}, secret: {self.client_secret}")
 
-
   def new_token(self) -> dict:
     join = f"{self.client_id}:{self.client_secret}"
     auth = base64.b64encode(bytes(join, 'utf-8')).decode('utf-8')
     
     headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Basic ' + auth,
+      'Authorization': f"Basic {auth}",
     }
     
     data = {
