@@ -11,3 +11,6 @@ python3 -m pip install yt_download
 ```
 
 target playlist: https://open.spotify.com/playlist/3CV4m7gpnCjTYPqcPoI2dc?si=44e86e937be8461f
+
+
+If you get this errror: `Error: Unable to extract uploader id`, use [this fix](https://stackoverflow.com/a/75602237)
