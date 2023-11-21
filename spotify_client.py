@@ -1,5 +1,6 @@
 import requests
-import os, base64
+import os
+import base64
 
 class Spotify:
   env_file = 'config.env'

@@ -3,6 +3,7 @@ import urllib
 from spotify_client import Spotify
 
 class PlaylistFetch:
+  playlist_base_url = 'https://api.spotify.com/v1/playlists/'
   playlist_id = '3CV4m7gpnCjTYPqcPoI2dc'
   playlist_url: str
 
@@ -26,14 +27,14 @@ class PlaylistFetch:
   _spotify: Spotify
 
   def __init__(self):
-    self.playlist_url = f"https://api.spotify.com/v1/playlists/{self.playlist_id}"
+    self.playlist_url = f"{self.playlist_base_url}{self.playlist_id}"
     self._spotify = Spotify()
     self._token = self._spotify.new_token()
 
   def get_playlist(self):
     access_token = self._token['access_token']
 
-    self._build_request_fields()
+    self._build_url()
 
     headers = {
       'Authorization': f"Bearer {access_token}",
@@ -43,17 +44,13 @@ class PlaylistFetch:
       self.playlist_url,
       headers=headers)
 
-    print(f"fields: {self._field}")
-    print(f"url: {self.playlist_url}")
-    # print(access_token)
-    # print(req)
-    print(req.json())
+    return req.json()
 
   # PRIVATE METHODS
 
   # build request param from self.field_structure
   # ex: tracks(href,name,items(track(name)))
-  def _build_request_fields(self):
+  def _build_url(self):
     # format spotify field
     def traverse(root):
       items = root.items()
@@ -77,6 +74,4 @@ class PlaylistFetch:
 
     # format and set url    
     field_param = urllib.parse.quote(self._field)
-    print(field_param)
     self.playlist_url = f"{self.playlist_url}?fields={field_param}"
-
