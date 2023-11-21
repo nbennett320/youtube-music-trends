@@ -1,9 +1,13 @@
-install requests
+1. install ffmpeg
+2. install dependencies
+3. set `CLIENT_ID` and `CLIENT_SECRET` in `config.env`
 
 ```
 python3 -m pip install requests
+python3 -m pip install beautifulsoup4
+python3 -m pip install selenium
+python3 -m pip install python-ffmpeg
+python3 -m pip install yt_download
 ```
 
 target playlist: https://open.spotify.com/playlist/3CV4m7gpnCjTYPqcPoI2dc?si=44e86e937be8461f
-
-set `CLIENT_ID` and `CLIENT_SECRET` in `config.env`

@@ -1,6 +1,7 @@
 import requests
 from playlist_fetch import PlaylistFetch
 from youtube_search import YoutubeSearch
+from music import Music
 
 def build_search_term(item: dict[str, any]):
   track = item['track']
@@ -25,7 +26,9 @@ def main():
 
   print(f"search_query: {search_query}")
 
-  yt_searcher.download_file()
-  
+  filename = yt_searcher.download_file()
+
+  music_modifier = Music(filename)
+  music_modifier.slow_down(.86)
 
 main()

@@ -28,20 +28,20 @@ class YoutubeSearch:
     self.downloader = YoutubeDL(download_config)
   
   def download_file(self):
-    self.get_urls()
+    self._get_url()
     self._download_mp3()
 
-  def get_urls(self, limit=3):
-    self._build_url()
-
-    req = requests.get(self.search_url)  
-    self._parse_page_content(req.text)
-  
   # PRIVATE METHODS
 
   def _build_url(self):
     param = urllib.parse.quote(self.query)
     self.search_url = f"{self.search_base_url}?search_query={param}"
+
+  def _get_url(self):
+    self._build_url()
+
+    req = requests.get(self.search_url)  
+    self._parse_page_content(req.text)
 
   def _parse_page_content(self, html_text: str):
     soup = BeautifulSoup(html_text, 'html.parser')
@@ -64,4 +64,6 @@ class YoutubeSearch:
 
     with self.downloader as ydl:
       ydl.download([self.dl_url])
+    
+    return f"{self.download_filename}.mp3"
     
