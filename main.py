@@ -29,6 +29,6 @@ def main():
   filename = yt_searcher.download_file()
 
   music_modifier = Music(filename)
-  music_modifier.slow_down(.86)
+  music_modifier.mod_random_tempo()
 
 main()
