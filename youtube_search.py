@@ -9,6 +9,7 @@ from youtube_dl import YoutubeDL
 
 class YoutubeSearch:
   search_base_url = 'https://www.youtube.com/results'
+  file_extension = 'wav'
   query: str
   search_url: str
   dl_url: str
@@ -20,16 +21,16 @@ class YoutubeSearch:
     self.download_filename = util.to_snake_case(query)
 
     download_config = {
-      'format': 'bestaudio/best',
+      'format': f"bestaudio[ext={self.file_extension}]/best",
       'keepvideo': False,
-      'outtmpl': f"{self.download_filename}.mp3",
+      'outtmpl': f"{self.download_filename}.{self.file_extension}",
     }
 
     self.downloader = YoutubeDL(download_config)
   
   def download_file(self):
     self._get_url()
-    self._download_mp3()
+    self._download()
 
   # PRIVATE METHODS
 
@@ -59,11 +60,11 @@ class YoutubeSearch:
 
     browser.close()
   
-  def _download_mp3(self):
+  def _download(self):
     print(f"filename: {self.download_filename}")
 
     with self.downloader as ydl:
       ydl.download([self.dl_url])
     
-    return f"{self.download_filename}.mp3"
+    return f"{self.download_filename}.{self.file_extension}"
     
