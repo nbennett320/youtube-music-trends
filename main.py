@@ -1,4 +1,5 @@
 import requests
+import random
 from playlist_fetch import PlaylistFetch
 from youtube_search import YoutubeSearch
 from song import Song
@@ -21,7 +22,8 @@ def main():
   playlist_fetcher = PlaylistFetch()
   playlist_items = playlist_fetcher.get_playlist()
 
-  search_query = build_search_term(playlist_items['tracks']['items'][10])
+  n_items = len(playlist_items['tracks']['items']) - 1
+  search_query = build_search_term(playlist_items['tracks']['items'][random.randrange(0, n_items)])
   yt_searcher = YoutubeSearch(search_query)
 
   print(f"search_query: {search_query}")
@@ -33,6 +35,5 @@ def main():
   song_modifier.mod_random_tempo()
 
   s = Song(filename)
-  print(s.format_dur())
 
 main()
